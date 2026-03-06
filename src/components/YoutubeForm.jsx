@@ -53,7 +53,7 @@ function YoutubeForm() {
                 onChange={formik.handleChange} 
                 onBlur={formik.handleBlur}
                 value={formik.values.name} />
-                {formik.errors.name 
+                {formik.touched.name && formik.errors.name 
                 ? <div style={{color: 'red'}}>{formik.errors.name}</div> 
                 : null}
             </div>
@@ -64,7 +64,7 @@ function YoutubeForm() {
                 onChange={formik.handleChange} 
                 onBlur={formik.handleBlur}
                 value={formik.values.email}/>
-                {formik.errors.email 
+                {formik.touched.email && formik.errors.email 
                 ? <div style={{color: 'red'}}>{formik.errors.email}</div> 
                 : null}
             </div>
@@ -75,7 +75,7 @@ function YoutubeForm() {
                 onChange={formik.handleChange} 
                 onBlur={formik.handleBlur}
                 value={formik.values.channel}/>
-                {formik.errors.channel 
+                {formik.touched.channel && formik.errors.channel 
                 ? <div style={{color: 'red'}}>{formik.errors.channel}</div> 
                 : null}
             </div>
