@@ -1,6 +1,7 @@
 import { Form, Formik, Field, ErrorMessage } from 'formik';
 import './YoutubeForm.css';
 import * as Yup from 'yup';
+import TextError from './TextError';
 
 function YoutubeForm() {
 
@@ -32,13 +33,16 @@ function YoutubeForm() {
             <div className='form-field'>
                 <label htmlFor='name'>Name</label>
                 <Field type='text' id='name' name='name' />
-                <ErrorMessage name='name'   />
+                {/* <ErrorMessage name='name'  component='div' /> */}
+                <ErrorMessage name='name' component={TextError} />
             </div>
 
             <div className='form-field'>
                 <label htmlFor='email'>E-mail</label>
                 <Field type='email' id='email' name='email' />
-                <ErrorMessage name='email'   />
+                <ErrorMessage name='email'>
+                    {errorMsg => <div className='error'>{errorMsg}</div>}
+                </ErrorMessage>
             </div>
 
             <div className='form-field'>
