@@ -1,4 +1,4 @@
-import { Form, Formik, Field, ErrorMessage } from 'formik';
+import { Form, Formik, Field, ErrorMessage, FieldArray } from 'formik';
 import './YoutubeForm.css';
 import * as Yup from 'yup';
 import TextError from './TextError';
@@ -11,6 +11,7 @@ function YoutubeForm() {
     comments: '',
     address: '',
     social: { facebook: '', twitter: '' },
+    phNumbers: [''],
     phoneNumbers: ['', ''],
   };
 
@@ -95,6 +96,35 @@ function YoutubeForm() {
             <div className='form-field'>
                 <label htmlFor='secondaryPhone'>Secondary Phone</label>
                 <Field type='text' id='secondaryPhone' name='phoneNumbers[1]' />
+            </div>
+
+            <div className='form-field'>
+                <label>List of Phone Numbers</label>
+                <FieldArray name='phNumbers'>       
+                    {(fieldArrayProps) => {
+                        console.log('FieldArray render props:', fieldArrayProps);
+                        const { push, remove, form } = fieldArrayProps;
+                        const { values } = form;    
+                        const { phNumbers } = values;
+                        return (
+                            <div>   
+                                {phNumbers.map((phNumber, index) => (
+                                    <div key={index}>
+                                        <Field name={`phNumbers[${index}]`} />  
+                                        {index > 0 && (
+                                            <button type='button' onClick={() => remove(index)}>
+                                                -
+                                            </button>
+                                        )}
+                                        <button type='button' onClick={() => push('')}>
+                                            +    
+                                        </button>
+                                    </div>
+                                ))}
+                            </div>
+                        );
+                    }}
+                </FieldArray>
             </div>
 
             <button type='submit'>Submit</button>
