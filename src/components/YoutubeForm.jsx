@@ -11,6 +11,7 @@ function YoutubeForm() {
     comments: '',
     address: '',
     social: { facebook: '', twitter: '' },
+    phoneNumbers: ['', ''],
   };
 
   const onSubmit = (values) => console.log('Form data submitted:', values);
@@ -85,6 +86,15 @@ function YoutubeForm() {
                   </>
                 )}
               </Field>
+            </div>
+
+            <div className='form-field'>
+                <label htmlFor='primaryPhone'>Primary Phone</label>
+                <Field type='text' id='primaryPhone' name='phoneNumbers[0]' />
+            </div>
+            <div className='form-field'>
+                <label htmlFor='secondaryPhone'>Secondary Phone</label>
+                <Field type='text' id='secondaryPhone' name='phoneNumbers[1]' />
             </div>
 
             <button type='submit'>Submit</button>
