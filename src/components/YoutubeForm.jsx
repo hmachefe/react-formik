@@ -1,4 +1,4 @@
-import { Form, Formik, Field, ErrorMessage, FieldArray } from 'formik';
+import { Form, Formik, Field, ErrorMessage, FieldArray, FastField } from 'formik';
 import './YoutubeForm.css';
 import * as Yup from 'yup';
 import TextError from './TextError';
@@ -77,16 +77,20 @@ function YoutubeForm() {
 
             <div className='form-field'>
               <label htmlFor='address'>Address</label>
-              <Field id='address' name='address'>
-                {({ field, meta }) => (
-                  <>
-                    <input type='text' id='address' {...field} />
-                    {meta.touched && meta.error && (
-                      <div className='error'>{meta.error}</div>
-                    )}
-                  </>
-                )}
-              </Field>
+              <FastField id='address' name='address'>
+                {(props) => {
+                    console.log('Render props for address field:', props);
+                    const { field, meta } = props;
+                    return(
+                        <>
+                            <input type='text' id='address' {...field} />
+                            {meta.touched && meta.error && (
+                            <div className='error'>{meta.error}</div>
+                            )}
+                        </>
+                    );
+                }}
+              </FastField>
             </div>
 
             <div className='form-field'>
@@ -102,7 +106,6 @@ function YoutubeForm() {
                 <label>List of Phone Numbers</label>
                 <FieldArray name='phNumbers'>       
                     {(fieldArrayProps) => {
-                        console.log('FieldArray render props:', fieldArrayProps);
                         const { push, remove, form } = fieldArrayProps;
                         const { values } = form;    
                         const { phNumbers } = values;
