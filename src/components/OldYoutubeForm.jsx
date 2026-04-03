@@ -15,21 +15,22 @@ function OldYoutubeForm() {
     console.log('Form data submitted:', values);
   }
 
-//   const validate = (values) => {
-//         let errors = {};
-//         if (!values.name) {
-//             errors.name = 'Required';    
-//         }
-//         if (!values.email) {
-//             errors.email = 'Required';
-//         }
-//         if (!values.channel) {
-//             errors.channel = 'Required';
-//         } else if (!(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email))) {
-//             errors.email = 'Invalid email format';
-//         }
-//         return errors;
-//     }
+  // unsued validate function, replaced by validationSchema
+  const validate = (values) => {
+        let errors = {};
+        if (!values.name) {
+            errors.name = 'Required';    
+        }
+        if (!values.email) {
+            errors.email = 'Required';
+        }
+        if (!values.channel) {
+            errors.channel = 'Required';
+        } else if (!(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email))) {
+            errors.email = 'Invalid email format';
+        }
+        return errors;
+    }
 
     const validationSchema = Yup.object({
         name: Yup.string().required('Required'),
