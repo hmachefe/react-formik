@@ -23,6 +23,14 @@ function YoutubeForm() {
     channel: Yup.string().required('Required'),
   });
 
+  const validateComments = (value) => {
+    let error;  
+    if (!value) {
+      error = 'Required';
+    }
+    return error;
+  }
+
   return (
     <div className='form-container'>
       <div className='form-card'>
@@ -32,8 +40,6 @@ function YoutubeForm() {
           initialValues={initialValues}
           validationSchema={validationSchema}
           onSubmit={onSubmit}
-          validateOnChange={false}
-          validateOnBlur={false}
         >
           <Form>
             {/* Name + Email side by side */}
@@ -61,7 +67,8 @@ function YoutubeForm() {
 
             <div className='form-field'>
               <label htmlFor='comments'>Comments</label>
-              <Field component='textarea' id='comments' name='comments' placeholder='Leave a comment...' />
+              <Field component='textarea' id='comments' name='comments' placeholder='Leave a comment...' validate={validateComments}/>
+              <ErrorMessage name='comments' component={TextError} />
             </div>
 
             {/* Facebook + Twitter side by side */}
