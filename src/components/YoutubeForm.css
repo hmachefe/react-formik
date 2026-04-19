@@ -105,3 +105,9 @@ button[type='submit']:hover {
 button[type='submit']:active {
   transform: scale(0.98);
 }
+
+button[type='submit']:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background-color: #a0a0a0; /* or whatever grey fits your design */
+}
